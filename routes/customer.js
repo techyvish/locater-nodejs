@@ -8,6 +8,8 @@ exports.list = function (req, res) {
             if ( err )
             {
                 console.log("Error selecting");
+                res.status(500);
+                res.send('No data found');
             }
             else {
                 res.status(200);
