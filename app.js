@@ -13,15 +13,24 @@ var app = express();
 var connection = require('express-myconnection');
 var mysql = require('mysql');
 
-app.set('port', process.env.PORT || 4300 );
+var db_config_prod = {
+    host: 'us-cdbr-iron-east-01.cleardb.net',
+    user: 'b8413f8c3593d4',
+    password: '201bfd3e',
+    database: 'heroku_5c6959e8187b7ef'
+};
 
-app.use ( connection(mysql,{
+var db_config_dev = {
     host:'localhost',
     port:3306,
     user:'root',
     password:'',
     database:'locater'
-},'pool'));
+};
+
+app.set('port', process.env.PORT || 4300 );
+
+app.use ( connection(mysql,db_config_prod,'pool'));
 
 /*
  will call every time for incoming requests
