@@ -4,6 +4,7 @@
 var express = require('express');
 var customerroutes = require('./routes/customer.js');
 var indexroute = require('./routes/index.js');
+var userroute = require('./routes/user.js');
 var http = require('http');
 var path = require('path');
 
@@ -48,6 +49,7 @@ app.use(function (req, res, next) {
 app.get('/',indexroute.index);
 app.get('/customers', customerroutes.list);
 app.post('/customers/add', customerroutes.save);
+app.get('/send',userroute.sendemail);
 
 http.createServer(app).listen( app.get('port'),function(){
     console.log('Express server listening on port ' + app.get('port'));
