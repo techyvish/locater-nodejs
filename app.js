@@ -35,7 +35,7 @@ app.use(express.methodOverride());
 
 app.set('port', process.env.PORT || 4300 );
 
-app.use ( connection(mysql,db_config_dev,'pool'));
+app.use (connection(mysql,db_config_prod,'pool'));
 
 /*
  will call every time for incoming requests
