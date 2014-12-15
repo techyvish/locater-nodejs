@@ -28,9 +28,14 @@ var db_config_dev = {
     database:'locater'
 };
 
+app.use(express.logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+
 app.set('port', process.env.PORT || 4300 );
 
-app.use ( connection(mysql,db_config_prod,'pool'));
+app.use ( connection(mysql,db_config_dev,'pool'));
 
 /*
  will call every time for incoming requests
@@ -42,6 +47,7 @@ app.use(function (req, res, next) {
 
 app.get('/',indexroute.index);
 app.get('/customers', customerroutes.list);
+app.post('/customers/add', customerroutes.save);
 
 http.createServer(app).listen( app.get('port'),function(){
     console.log('Express server listening on port ' + app.get('port'));
