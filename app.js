@@ -49,8 +49,8 @@ app.use(function (req, res, next) {
 app.get('/',indexroute.index);
 app.get('/customers', customerroutes.list);
 app.post('/customers/add', customerroutes.save);
-app.get('/send',userroute.sendemail);
+//app.get('/send',userroute.sendemail);
 
 http.createServer(app).listen( app.get('port'),function(){
-    console.log('Express server listening on port ' + app.get('port'));
+    console.log('Ex press server listening on port ' + app.get('port'));
 });
